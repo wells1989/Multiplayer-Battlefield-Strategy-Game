@@ -1,9 +1,9 @@
+import pygame
 from pygame.locals import *
 
 def handle_key_event(selected_attribute, clicked_cell, current_player, event, attribute_values, take_turn, players, update_scores, grid, rows, cols, check_sound, sounds, sound_active):
     info_message = ""
     if clicked_cell is not None and clicked_cell.controlled_by == current_player.name:
-        print(selected_attribute)
         if event.key == K_u:
             info_message = f'{selected_attribute}: {getattr(clicked_cell, selected_attribute)}'
 
@@ -59,3 +59,7 @@ def handle_key_event(selected_attribute, clicked_cell, current_player, event, at
     
     else:
         return selected_attribute, clicked_cell, current_player, info_message
+
+def handle_quit_event(event):
+   return False if event.type == pygame.QUIT else True
+

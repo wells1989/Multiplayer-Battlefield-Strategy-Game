@@ -6,16 +6,9 @@ from media.media import icons, sounds
 from globals.constants import title_font, font
 from globals.classes import HQ, Terrain
 from utils.game_setup import start_game, generate_game_variables, reset_game
-from utils.game_logic import is_touching, ability_checker, take_turn, battle, last_survivor, update_scores, check_sound, update_info_message, battle_lost, battle_won
+from utils.game_logic import is_touching, ability_checker, take_turn, battle, last_survivor, update_scores, check_sound, update_info_message, battle_lost, battle_won, mute_event_handler
 from utils.game_display import pygame_setup, game_choices, display_rules_popup
-from utils.event_handlers import handle_key_event
-
-
-def mute_event_handler(sound_active, info_message):
-    sound_active = False if sound_active == True else True
-    info_message = "Game muted" if sound_active == False else "Game unmuted"
-
-    return sound_active, info_message
+from utils.event_handlers import handle_key_event, handle_quit_event
 
 ## Main game loop
 
@@ -27,11 +20,10 @@ grid, screen, cols, rows, grid_size, running, current_player, clicked_cell, info
 
 while running:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        running = handle_quit_event(event)
 
         # Click events
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             row = event.pos[1] // cell_size 
             col = event.pos[0] // cell_size
 
@@ -120,8 +112,6 @@ while running:
         elif event.type == KEYDOWN:
             if event.key in (K_u, K_1, K_2, K_3, K_4, K_5, K_6, K_7, K_w, K_UP, K_s, K_DOWN, K_ESCAPE):
                 selected_attribute, clicked_cell, current_player, info_message = handle_key_event(selected_attribute, clicked_cell, current_player, event, attribute_values, take_turn, players, update_scores, grid, rows, cols, check_sound, sounds, sound_active)
-            else:
-                pass
 
 ## PyGame visual updates
         pygame_setup(screen, icons, current_player, title_font, font, player1, player2, player3, player4, grid_size, cell_size, rows, cols, grid, sound_active, info_message, current_cell_color, attribute_values, players, clicked_cell)
@@ -130,3 +120,4 @@ while running:
 # Quit Pygame
 pygame.quit()
 sys.exit()
+
