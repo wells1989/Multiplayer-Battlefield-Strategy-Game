@@ -118,8 +118,10 @@ while running:
 
         # key events (on already controlled cells)
         elif event.type == KEYDOWN:
-            selected_attribute, clicked_cell, current_player, info_message = handle_key_event(selected_attribute, clicked_cell, current_player, event, attribute_values, take_turn, players, update_scores, grid, rows, cols, check_sound, sounds, sound_active)
-        
+            if event.key in (K_u, K_1, K_2, K_3, K_4, K_5, K_6, K_7, K_w, K_UP, K_s, K_DOWN, K_ESCAPE):
+                selected_attribute, clicked_cell, current_player, info_message = handle_key_event(selected_attribute, clicked_cell, current_player, event, attribute_values, take_turn, players, update_scores, grid, rows, cols, check_sound, sounds, sound_active)
+            else:
+                pass
 
 ## PyGame visual updates
         pygame_setup(screen, icons, current_player, title_font, font, player1, player2, player3, player4, grid_size, cell_size, rows, cols, grid, sound_active, info_message, current_cell_color, attribute_values, players, clicked_cell)

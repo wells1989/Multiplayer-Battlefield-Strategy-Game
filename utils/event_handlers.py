@@ -3,6 +3,7 @@ from pygame.locals import *
 def handle_key_event(selected_attribute, clicked_cell, current_player, event, attribute_values, take_turn, players, update_scores, grid, rows, cols, check_sound, sounds, sound_active):
     info_message = ""
     if clicked_cell is not None and clicked_cell.controlled_by == current_player.name:
+        print(selected_attribute)
         if event.key == K_u:
             info_message = f'{selected_attribute}: {getattr(clicked_cell, selected_attribute)}'
 
@@ -54,4 +55,7 @@ def handle_key_event(selected_attribute, clicked_cell, current_player, event, at
         if info_message:
             check_sound(sounds, "info", sound_active)
 
+        return selected_attribute, clicked_cell, current_player, info_message
+    
+    else:
         return selected_attribute, clicked_cell, current_player, info_message
