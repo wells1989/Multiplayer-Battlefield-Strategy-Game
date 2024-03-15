@@ -8,6 +8,7 @@ from globals.constants import WHITE
 def start_game(players, grid_window, screen_size, grid_size):
     for player in players:
         player.score = 500
+        player.defeated = False
     grid, screen, cols, rows, cell_size = initialize_game(players, grid_window, screen_size, grid_size)
 
     running, current_player, clicked_cell, info_message, game_active = generate_round_variables(players)
