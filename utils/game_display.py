@@ -104,7 +104,6 @@ def game_choices():
 
                     start_game_button = pygame.Rect(300 - (start_rect.width // 2), y + 150, start_rect.width + 20, start_rect.height + 20)
                     if start_game_button.collidepoint(event.pos):
-                        print(f'starting game with {player_count}')
                         pygame.display.set_caption("Battlefield Game")
                         screen.fill(WHITE)
                         waiting_for_input = False

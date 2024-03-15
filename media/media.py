@@ -36,7 +36,7 @@ icons = {
 import os
 pygame.mixer.init()
 
-# Set up the paths to the sound files (e.g. effects_directory would be root directory i.e. chaser.effects
+# Set up the paths to the sound files (e.g. effects_directory would be root directory
 
 # then win_sound_path would be chaser.effects.win
 current_directory = os.path.dirname(__file__)
