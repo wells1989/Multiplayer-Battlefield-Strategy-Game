@@ -186,6 +186,13 @@ def check_sound(sounds, sound, sound_active):
     return sounds[sound].play() if sound_active else None
 
 
+# muting or unmuting the program
+def mute_event_handler(sound_active, info_message):
+    sound_active = False if sound_active == True else True
+    info_message = "Game muted" if sound_active == False else "Game unmuted"
+
+    return sound_active, info_message
+
 # updating info_message along with possible sound alert
 def update_info_message(info_message, string, sound_active, sounds):
     info_message = string
