@@ -1,4 +1,3 @@
-# refactored / separated code, to do: change main function / mini functions within it (cleaner / less code?) and scrolling / screen shrinking??
 import pygame
 from pygame.locals import *
 import sys
